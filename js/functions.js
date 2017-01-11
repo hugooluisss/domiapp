@@ -1,3 +1,4 @@
+server = "http://localhost/domiAdmin/";
 /*
 *
 * Centra verticalmente una ventana modal

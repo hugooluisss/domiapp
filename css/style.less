@@ -13,3 +13,66 @@ nav.navbar-fixed-top{
 		padding-top: 60px;
 	}
 }
+
+input.validateError, input.validateError:focus{
+	border: 1px solid @colorError;
+}
+
+label.validateError{
+	color: @colorError;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+#aplicacion{
+	#menu{
+		border-bottom: 1px solid @menu-botones-borde-color;
+		position: fixed;
+		top: 50px;
+		z-index: 9;
+		
+		a{	
+			&[role=button]{
+				background: #CEF6E3;
+				border: none;
+				border-right: none;
+				&:last-child{
+					border: none;
+				}
+				
+				i.fa{
+				}
+			}
+		}
+	}
+	
+	.navbar{
+		border: none;
+		.navbar-header{
+			text-align: center;
+			.navbar-toggle{
+				border: none;
+				
+				&:hover{
+					background: @verde1 + #010;
+					color: white;
+				}
+			}
+			
+			.navbar-brand{
+				padding-right: 0px;
+				padding-top: 0px;
+				padding-left: 0px;
+				left: 43%;
+				position: absolute;
+				img{
+					width: 55px;
+				}
+			}
+		}
+	}
+	
+	& .modulo{
+		padding-top: 80px;
+	}
+}

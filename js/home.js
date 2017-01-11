@@ -41,6 +41,113 @@ var app = {
 		$(".nav-tabs a").click(function(){
 			$(this).tab('show');
 		});
+		
+		$("#frmLogin").find("#txtUsuario").focus();
+		$("#frmLogin").validate({
+			debug: true,
+			errorClass: "validateError",
+			rules: {
+				txtUsuario: {
+					required : true,
+					email: true
+				},
+				txtPass: {
+					required : true
+				}
+			},
+			wrapper: 'span',
+			submitHandler: function(form){
+				var obj = new TCliente;
+				
+				obj.login({
+					usuario: $("#txtUsuario").val(), 
+					pass: $("#txtPass").val(),
+					before: function(){
+						$("#frmLogin [type=submit]").prop("disabled", true);
+					},
+					after: function(data){
+						if (data.band == false){
+							alertify.alert("Tus datos no son válidos");
+							$("#frmLogin [type=submit]").prop("disabled", false);
+						}else{
+							location.href = "inicio.html";
+						}
+					}
+				});
+			}
+		});
+		
+		$("#frmRegistro").validate({
+			errorClass: "validateError",
+			debug: true,
+			rules: {
+				txtNombre: {
+					required : true,
+					email: false
+				},
+				txtUsuario: {
+					required : true,
+					email: true,
+					remote: {
+						url: server + "cclientes",
+						type: "post",
+						data: {
+							action: "validaEmail",
+							"movil": 1
+						}
+					}
+				},
+				txtPass: {
+					required : true,
+					minlength: 5
+				},
+				txtPass2: {
+					required : true,
+					minlength: 5,
+					equalTo: "#frmRegistro #txtPass"
+				},
+				txtNacimiento: {
+					required : true
+				}
+			},
+			wrapper: 'span', 
+			messages: {
+				txtUsuario: {
+					remote: "Este correo ya se encuentra registrado"
+				},
+				chkTerminos: "Es necesario aceptar los términos y condiciones",
+				txtNacimiento: "Indica tu fecha de nacimiento"
+			},
+			submitHandler: function(form){
+				var obj = new TCliente;
+				form = $(form);
+				
+				obj.registrar({
+					nombre: form.find("#txtNombre").val(), 
+					sexo: form.find("#selSexo").val(), 
+					correo: form.find("#txtUsuario").val(), 
+					pass: form.find("#txtPass").val(), 
+					nacimiento: form.find("#txtNacimiento").val(), 
+					before: function(){
+						form.find("[type=submit]").prop("disabled", true);
+					},
+					after: function(data){
+						form.find("[type=submit]").prop("disabled", false);
+						
+						if (data.band == false){
+							alertify.error("Ocurrió un error al registrar la cuenta, inténtelo más tarde");
+						}else{
+							if (form.find("#selSexo").val() == 'M')
+								alertify.success("<b>Bienvenido " + form.find("#txtNombre").val() + "</b>, haz quedado registrado");
+							else
+								alertify.success("<b>Bienvenida " + form.find("#txtNombre").val() + "</b>, haz quedado registrada");
+							
+							setTimeout(function(){location.reload(true)}, 3000);
+						}
+					}
+				});
+			}
+		});
 	}
 };
 
