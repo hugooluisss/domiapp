@@ -1,4 +1,6 @@
-server = "http://localhost/domiAdmin/";
+server = "http://192.168.2.4/domiAdmin/";
+
+tplBotonMenu = '<a role="button" class="btn btn-default"><span class="fa-stack"><img src=""></span></a>';
 /*
 *
 * Centra verticalmente una ventana modal

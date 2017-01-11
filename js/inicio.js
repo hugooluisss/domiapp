@@ -38,19 +38,49 @@ var app = {
 			"movil": 1,
 			"json": true
 		}, function(resp){
-			$.get("vistas/categoria.tpl", function(pCategoria){
-				$.each(resp, function(i, el){
-					var plt = pCategoria;
-					plt = $(plt);
-					
-					$.each(el, function(campo, valor){
-						plt.find("[campo=" + campo + "]").html(valor);
+			
+			$.each(resp, function(i, el){
+				var btnMenu = tplBotonMenu;
+				btnMenu = $(btnMenu);
+				btnMenu.find("img").attr("src", server + "img/cat" + el.idCategoria + ".png");
+				btnMenu.attr("datos", el.json);
+				
+				btnMenu.click(function(){
+					$.get("vistas/categoria.tpl", function(pCategoria){
+						pCategoria = $(pCategoria);
+						
+						var el = jQuery.parseJSON(btnMenu.attr("datos"));
+						
+						$.each(el, function(campo, valor){
+							pCategoria.find("[campo=" + campo + "]").html(valor);
+							
+							$(".modulo").html(pCategoria);
+						});
+						
+						$.post(server + "listaServicios", {
+							"movil": 1,
+							"json": true,
+							"categoria": el.idCategoria
+						}, function(productos){
+							$.get("vistas/producto.tpl", function(viewProducto){
+								$.each(productos, function(i, producto){
+									var pProducto = viewProducto;
+									pProducto = $(pProducto);
+									
+									pProducto.find("img").attr("src", server + "repositorio/servicios/img" + producto.idServicio + ".jpg");
+									
+									$.each(producto, function(campo, valor){
+										pProducto.find("[campo=" + campo + "]").html(valor);
+									});
+									
+									$(".productos").append(pProducto);
+								});
+							});
+						}, "json");
 					});
-					
-					plt.find("img").attr("src", server + "img/cat" + el.idCategoria + ".png");
-					
-					$("#modulo").append(plt);
 				});
+				
+				$("#menu").append(btnMenu);
 			});
 		}, "json");
 	}
@@ -64,5 +94,5 @@ $(document).ready(function(){
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
-	$("#modulo").css("height", $(window).height());
+	$(".modulo").css("height", $(window).height());
 });

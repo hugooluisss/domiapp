@@ -25,6 +25,9 @@ label.validateError{
 }
 
 #aplicacion{
+	background: url("../img/background.png") no-repeat right bottom;
+	background-size: cover;
+	
 	#menu{
 		border-bottom: 1px solid @menu-botones-borde-color;
 		position: fixed;
@@ -36,8 +39,13 @@ label.validateError{
 				background: #CEF6E3;
 				border: none;
 				border-right: none;
+				border-radius:inherit;
 				&:last-child{
 					border: none;
+				}
+				
+				.fa-stack{
+					width: auto;
 				}
 				
 				i.fa{
@@ -73,6 +81,36 @@ label.validateError{
 	}
 	
 	& .modulo{
-		padding-top: 80px;
+		padding-top: 100px;
+		overflow-y: scroll;
+		
+		h3{
+			color: @verde2;
+		}
+		
+		.productos{
+			.media{
+				background: white;
+				.opacar(.90);
+				
+				img{
+					width: 80px;
+					height: 80px;
+				}
+				
+				.btn-success{
+					margin-right: 10px;
+					margin-bottom: 10px;
+				}
+				
+				[campo=nombre]{
+					color: @verde1;
+				}
+				
+				[campo=descripcion]{
+					font-size: 12px;
+				}
+			}
+		}
 	}
 }
