@@ -43,6 +43,7 @@ var app = {
 				var btnMenu = tplBotonMenu;
 				btnMenu = $(btnMenu);
 				btnMenu.find("img").attr("src", server + "img/cat" + el.idCategoria + ".png");
+				btnMenu.find("[campo=nombre]").html(el.nombre);
 				btnMenu.attr("datos", el.json);
 				
 				btnMenu.click(function(){
