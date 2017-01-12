@@ -5,6 +5,6 @@
 	<div class="media-body">
 		<h5 campo="nombre">Media heading</h5>
 		<p campo="descripcion" />
-		<button class="btn btn-success btn-xs pull-right">Solicitar</button>
+		<button class="btn btn-success btn-xs pull-right solicitar">Solicitar</button>
 	</div>
 </li>
