@@ -38,6 +38,16 @@ var app = {
 		idCliente = window.localStorage.getItem("sesion");
 		if (idCliente == null || idCliente == undefined || idCliente == '')
 			location.href = "index.html";
+			
+		$.get("vistas/pago.tpl", function(resp){
+			$("#winPago").find(".modal-body").html(resp);
+			
+			var fecha = new Date();
+			var ano = fecha.getFullYear();
+			
+			for(var i = 0 ; i  < 10 ; i++, ++ano)
+				$("#winPago").find(".exp_year").append('<option value="' + ano + '">' + ano + '</option>');
+		});
 	
 		$.post(server + "listaCategoriaServicios", {
 			"movil": 1,
@@ -107,19 +117,32 @@ var app = {
 					"json": true,
 					"cliente": idCliente
 				}, function(sitios){
-					$("#selOrigen").find("option").remove().end().append('<option value="posicion">Mi posición</option>').append('<option value="">Otro lugar</option>').val('posicion');
-					$("#selDestino").find("option").remove().end().append('<option value="posicion">Mi posición</option>').append('<option value="">Otro lugar</option>').val('posicion');
+					$("#selOrigen").find("option").remove().end().append('<option value="">Otro lugar</option>').val('posicion');
+					$("#selDestino").find("option").remove().end().append('<option value="">Otro lugar</option>').val('posicion');
+					
+					navigator.geolocation.getCurrentPosition(function(position){
+						$("#selOrigen").prepend('<option value="posicion" latitude="' + position.coords.latitude + '" longitude="' + position.coords.longitude + '">Mi posición</option>');
+						$("#selDestino").prepend('<option value="posicion" latitude="' + position.coords.latitude + '" longitude="' + position.coords.longitude + '">Mi posición</option>');
+					}, function(){
+						alertify.error("No se pudo obtener tu ubicación");
+					});
 					
 					$.each(sitios, function(i, sitio){
 						console.log(sitio);
-						$("#selOrigen").append('<option value="' + sitio.idSitio + '">' + sitio.titulo + '</option>');
-						$("#selDestino").append('<option value="' + sitio.idSitio + '">' + sitio.titulo + '</option>');
+						$("#selOrigen").append('<option value="' + sitio.idSitio + '" latitude="' + sitio.lat + '" longitude="' + sitio.lng + '">' + sitio.titulo + '</option>');
+						$("#selDestino").append('<option value="' + sitio.idSitio + '" latitude="' + sitio.lat + '" longitude="' + sitio.lng + '">' + sitio.titulo + '</option>');
 					});
 				}, "json");
-				
-				
 			});
 		}, "json");
+		
+		$("#sendWinPago").click(function(){
+			$("#winPago").modal();
+		});
+		
+		$("#frmEnvio").submit(function(){
+			
+		});
 	}
 };
 

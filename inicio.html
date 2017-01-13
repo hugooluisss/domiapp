@@ -72,7 +72,7 @@
 		<script type="text/javascript" src="js/inicio.js"></script>
 		
 		
-		<form onsubmit="javascript: return false;">
+		<form id="frmEnvio" onsubmit="javascript: return false;">
 			<div id="winDatosEnvio" class="modal fade" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -85,23 +85,42 @@
 								<div class="text-center">
 									<img class="img-rounded" src="..." />
 								</div>
+							</div>							
+							<div class="form-group">
+								<label for="selOrigen">Recoger en:</label>
+								<select id="selOrigen" name="selOrigen" class="form-control input-sm">
+								</select>
 							</div>
-							
-								<div class="form-group">
-									<label for="selOrigen">Recoger en:</label>
-									<select id="selOrigen" name="selOrigen" class="form-control input-sm">
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="selDestino">Enviar a:</label>
-									<select id="selDestino" name="selDestino" class="form-control input-sm">
-									</select>
-								</div>
-							
+							<div class="form-group">
+								<label for="selDestino">Enviar a:</label>
+								<select id="selDestino" name="selDestino" class="form-control input-sm">
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="selDestino">Notas:</label>
+								<textarea class="form-control" id="txtNotas" name="txtNotas"></textarea>
+								</select>
+							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
+							<button type="button" id="sendWinPago" class="btn btn-primary">Pagar</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			
+			
+			
+			<div id="winPago" class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Pago con tarjeta</h4>
+						</div>
+						<div class="modal-body" />
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">Pagar</button>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
