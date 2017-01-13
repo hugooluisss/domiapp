@@ -70,6 +70,9 @@ var app = {
 							alertify.alert("Tus datos no son válidos");
 							$("#frmLogin [type=submit]").prop("disabled", false);
 						}else{
+							window.localStorage.removeItem("sesion");
+							window.localStorage.setItem("sesion", data.cliente);
+							
 							location.href = "inicio.html";
 						}
 					}

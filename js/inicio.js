@@ -17,6 +17,7 @@
  * under the License.
  */
 var db = null;
+var idCliente;
 var app = {
 	// Application Constructor
 	initialize: function() {
@@ -34,11 +35,14 @@ var app = {
 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
+		idCliente = window.localStorage.getItem("sesion");
+		if (idCliente == null || idCliente == undefined || idCliente == '')
+			location.href = "index.html";
+	
 		$.post(server + "listaCategoriaServicios", {
 			"movil": 1,
 			"json": true
 		}, function(resp){
-			
 			$.each(resp, function(i, el){
 				var btnMenu = tplBotonMenu;
 				btnMenu = $(btnMenu);
@@ -73,6 +77,12 @@ var app = {
 									$.each(producto, function(campo, valor){
 										pProducto.find("[campo=" + campo + "]").html(valor);
 									});
+									pProducto.attr("json", producto.json);
+									
+									pProducto.find(".solicitar").click(function(){
+										$("#winDatosEnvio").attr("datos", pProducto.attr("json"));
+										$("#winDatosEnvio").modal();
+									});
 									
 									$(".productos").append(pProducto);
 								});
@@ -82,6 +92,32 @@ var app = {
 				});
 				
 				$("#menu").append(btnMenu);
+			});
+			
+			$("#winDatosEnvio").on('shown.bs.modal', function () {
+				var win = $("#winDatosEnvio");
+				var producto = jQuery.parseJSON(win.attr("datos"));
+				win.find(".modal-title").html(producto.nombre);
+				win.find(".img-rounded").attr("src", server + "repositorio/servicios/img" + producto.idServicio + ".jpg");
+			});
+			
+			$("#winDatosEnvio").on('shown.bs.modal', function () {
+				$.post(server + "listaSitios", {
+					"movil": 1,
+					"json": true,
+					"cliente": idCliente
+				}, function(sitios){
+					$("#selOrigen").find("option").remove().end().append('<option value="posicion">Mi posición</option>').append('<option value="">Otro lugar</option>').val('posicion');
+					$("#selDestino").find("option").remove().end().append('<option value="posicion">Mi posición</option>').append('<option value="">Otro lugar</option>').val('posicion');
+					
+					$.each(sitios, function(i, sitio){
+						console.log(sitio);
+						$("#selOrigen").append('<option value="' + sitio.idSitio + '">' + sitio.titulo + '</option>');
+						$("#selDestino").append('<option value="' + sitio.idSitio + '">' + sitio.titulo + '</option>');
+					});
+				}, "json");
+				
+				
 			});
 		}, "json");
 	}
