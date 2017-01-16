@@ -13,13 +13,16 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-3">CVC</label>
-			<div class="col-xs-3">
-				<input type="text" class="form-control input-xs cvc" data-conekta="card[cvc]"/>
+			<div class="col-xs-4">
+				<input type="text" class="form-control input-xs cvc" data-conekta="card[cvc]" placeholder="CVC"/>
+			</div>
+			<label class="control-label col-xs-3">Monto</label>
+			<div class="col-xs-5 text-right" id="monto">
+				$ 250.00
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-3">Expira</label>
+			<label class="control-label col-xs-2">Exp</label>
 			<div class="col-xs-6">
 				<select data-conekta="card[exp_month]" class="form-control input-xs exp_month">
 					<option value="01">Enero</option>
@@ -37,48 +40,34 @@
 				</select>
 			</div>
 			<div class="col-xs-4">
-				<select class="form-control input-xs exp_year" data-conekta="card[exp_year]">
-				</select>
-				<input type="text" class="form-control input-xs exp_year" placeholder="YYYY" maxlength="4" data-conekta="card[exp_year]"/>
+				<select class="form-control input-xs exp_year" data-conekta="card[exp_year]"></select>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="control-label col-xs-12">Monto</label>
-			<div class="col-xs-4">
-				$ 250.00
-			</div>
-			
-		</div>
-		
+		<hr />
 		<!--Dirección -->
 		<div class="form-group">
-			<label class="control-label col-xs-12">Calle</label>
 			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs calle" data-conekta="card[address][street1]"/>
+				<input type="text" class="form-control input-xs calle" data-conekta="card[address][street1]" placeholder="Calle"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-12">Colonia</label>
 			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs colonia" data-conekta="card[address][street2]"/>
+				<input type="text" class="form-control input-xs colonia" data-conekta="card[address][street2]" placeholder="Colonia"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-12">Ciudad</label>
 			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs ciudad" data-conekta="card[address][city]"/>
+				<input type="text" class="form-control input-xs ciudad" data-conekta="card[address][city]" placeholder="Ciudad"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-12">Estado</label>
 			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs estado" data-conekta="card[address][state]"/>
+				<input type="text" class="form-control input-xs estado" data-conekta="card[address][state]" placeholder="Estado"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-12">Código Postal</label>
 			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs codigoPostal" data-conekta="card[address][zip]"/>
+				<input type="text" class="form-control input-xs codigoPostal" data-conekta="card[address][zip]" placeholder="Código Postal"/>
 			</div>
 		</div>
 		

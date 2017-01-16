@@ -104,11 +104,15 @@ var app = {
 				$("#menu").append(btnMenu);
 			});
 			
-			$("#winDatosEnvio").on('shown.bs.modal', function () {
+			$("#winDatosEnvio").on('show.bs.modal', function () {
 				var win = $("#winDatosEnvio");
 				var producto = jQuery.parseJSON(win.attr("datos"));
 				win.find(".modal-title").html(producto.nombre);
 				win.find(".img-rounded").attr("src", server + "repositorio/servicios/img" + producto.idServicio + ".jpg");
+				
+				win.find("#groupOrigen").show();
+				if (producto.precio == 0)
+					win.find("#groupOrigen").hide();
 			});
 			
 			$("#winDatosEnvio").on('shown.bs.modal', function () {
@@ -117,8 +121,11 @@ var app = {
 					"json": true,
 					"cliente": idCliente
 				}, function(sitios){
-					$("#selOrigen").find("option").remove().end().append('<option value="">Otro lugar</option>').val('posicion');
-					$("#selDestino").find("option").remove().end().append('<option value="">Otro lugar</option>').val('posicion');
+					$("#selOrigen").find("option").remove().end().append('<option value="">Seleccionar</option>').val('posicion');
+					$("#selDestino").find("option").remove().end().append('<option value="">Seleccionar</option>').val('posicion');
+					
+					$("#selOrigen").find("option").remove().end().append('<option value="-">Otro lugar</option>').val('posicion');
+					$("#selDestino").find("option").remove().end().append('<option value="-">Otro lugar</option>').val('posicion');
 					
 					navigator.geolocation.getCurrentPosition(function(position){
 						$("#selOrigen").prepend('<option value="posicion" latitude="' + position.coords.latitude + '" longitude="' + position.coords.longitude + '">Mi posición</option>');
