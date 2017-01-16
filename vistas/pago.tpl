@@ -75,7 +75,7 @@
 		<div class="form-group">
 			<div class="row">
 				<div class="col-xs-6 col-xs-offset-3 text-center">
-					<button type="submit" class="btn btn-primary btn-block btn-flat">Pagar Ahora</button>
+					<button type="button" id="submitPago" class="btn btn-primary btn-block btn-flat">Pagar Ahora</button>
 					<input type='hidden' name='conektaTokenId' id="conektaTokenId">
 				</div>
 			</div>
