@@ -5,7 +5,7 @@
 		id    = "com.traking.app"  
 		version  = "1.0.0">  
 		
-		<name>Domi</name>  
+		<name>GrupoDomi</name>  
 		<description>Realizamos entregas locales en 20 minutos</description>  
 		<!--<author href="http://appositivas.blogspot.com" email="hugooluisss@gmail.com"></author>  -->
 		<!--  
@@ -60,6 +60,7 @@
 		<plugin name="cordova-plugin-barcodescanner" source="npm"/>
 		<plugin name="cordova-plugin-camera" source="npm"/>
 		<plugin name="cordova-plugin-file" source="npm"/>
+		<plugin name="cordova-plugin-file-transfer" source="npm"/>
 		<plugin name="cordova-plugin-geolocation" source="npm"/>
 		<plugin name="cordova-plugin-network-information" source="npm"/>
 		<plugin name="cordova-plugin-sqlite" source="npm"/>
