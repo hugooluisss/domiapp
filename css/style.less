@@ -90,6 +90,33 @@ label.validateError{
 				}
 			}
 		}
+		
+		.collapse{
+			max-height: none;
+			a{
+				&.action{
+					color: white;
+				}
+				
+				&.nav-link{
+					float: left;
+					width: 50%;
+					
+					@media(max-width: @mq-xs-max){
+						width: 100%;
+					}
+					
+					font-weight: normal;
+					&:hover{
+						text-decoration: none;
+					}
+				}
+			}
+			
+			.list-group-item{
+				color: @verde2;
+			}
+		}
 	}
 	
 	& .modulo{

@@ -47,6 +47,8 @@ var app = {
 		if (idCliente == null || idCliente == undefined || idCliente == '')
 			location.href = "index.html";
 			
+		setMenu();
+		
 		$.get("vistas/pago.tpl", function(resp){
 			$("#winPago").find(".modal-body").html(resp);
 			
