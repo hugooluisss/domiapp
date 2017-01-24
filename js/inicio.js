@@ -366,8 +366,8 @@ $(document).ready(function(){
 	
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
-	$("body").css("height", $(window).height() - ($(window).height() * 10 / 100));
-	$(".modulo").css("height", $(window).height());
+	$("body").css("height", $(window).height());
+	$(".modulo").css("height", $(window).height() - ($(window).height() * 5 / 100));
 	
 	markerDestino = new google.maps.Marker({});
 	markerOrigen = new google.maps.Marker({});
