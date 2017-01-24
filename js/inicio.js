@@ -386,7 +386,7 @@ $(document).ready(function(){
 				alertify.error("Indica la dirección");
 				$("#txtDireccion").select();
 			}else if($("#latitud").val() == ''){
-				alertify.error("Es necesario indicar un punto en el mapa... escribe una dirección y despues presiona el ícono buscar");
+				alertify.error("Es necesario indicar un punto en el mapa... escribe una dirección y después presiona el ícono buscar");
 				$("#txtDireccion").select();
 			}else{
 				$.post(server + "cclientes", {

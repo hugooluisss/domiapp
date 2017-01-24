@@ -22,6 +22,7 @@ TCliente = function(fn){
 		if (datos.before !== undefined) datos.before();
 		
 		$.post(server + 'cclientes', {
+				"id": datos.id == undefined?"":datos.id,
 				"nombre": datos.nombre,
 				"sexo": datos.sexo,
 				"correo": datos.correo,
