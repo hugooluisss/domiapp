@@ -20,7 +20,7 @@ function setMenu(){
 					targetWidth: 250,
 					targetHeight: 250,
 					correctOrientation: true,
-					allowEdit: true
+					allowEdit: false
 				});
 		}else{
 			alertify.error("No se pudo iniciar la cámara");
@@ -37,7 +37,7 @@ function setMenu(){
 		options.mimeType = "image/jpeg";
 		
 		var params = new Object();
-		params.identificador = idCliente();
+		params.identificador = idCliente;
 		params.movil = 1;
 		options.params = params;
 		
