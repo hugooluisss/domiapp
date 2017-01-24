@@ -42,6 +42,7 @@ var app = {
 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
+		//window.localStorage.removeItem("sesion");
 		idCliente = window.localStorage.getItem("sesion");
 		if (idCliente == null || idCliente == undefined || idCliente == '')
 			location.href = "index.html";
@@ -365,7 +366,7 @@ $(document).ready(function(){
 	
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
-	$("body").css("height", $(window).height());
+	$("body").css("height", $(window).height() - ($(window).height() * 10 / 100));
 	$(".modulo").css("height", $(window).height());
 	
 	markerDestino = new google.maps.Marker({});
