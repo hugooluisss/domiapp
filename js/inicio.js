@@ -198,7 +198,6 @@ var app = {
 			});
 			
 			$("#winDatosEnvio").on('show.bs.modal', function () {
-				var win = $("#winDatosEnvio");
 				var producto = jQuery.parseJSON(win.attr("datos"));
 				win.find(".modal-title").find(".titulo").html(producto.nombre);
 				win.find(".img-rounded").attr("src", server + "repositorio/servicios/img" + producto.idServicio + ".jpg");
@@ -378,7 +377,7 @@ $(document).ready(function(){
 	$.get("vistas/addSitio.tpl", function(resp){
 		$("body").find("#frmEnvio").after(resp);
 		
-		$("#agregar").click(function(){
+		$("#winAddSitio").find("#agregar").click(function(){
 			if ($("#txtTitulo").val() == ''){
 				alertify.error("Escribe el título del sitio");
 				$("#txtTitulo").select();
@@ -397,12 +396,40 @@ $(document).ready(function(){
 					"lat": $("#latitud").val(),
 					"lng": $("#longitud").val(),
 					"titulo": $("#txtTitulo").val(),
-					"direccion": $("#txtDireccion").val()
+					"direccion": $("#txtDireccion").val(),
+					"id": $("#idSitio").val()
 				}, function(resp){
 					if (resp.band){
+						if($("#winAddSitio").attr("datos") == '' || $("#winAddSitio").attr("datos") == undefined){
+							getSitios();
+						}
 						alertify.success("Sitio agregado");
 						$("#winAddSitio").modal("hide");
-					}
+					}else
+						alertify.error("No se pudo agregar");
+				}, "json");
+			}
+		});
+		
+		$("#winAddSitio").find("#eliminar").click(function(){
+			if ($("#idSitio").val() == ''){
+				alertify.error("No se puede eliminar este sitio");
+				$("#txtTitulo").select();
+			}else if(confirm("¿Seguro?")){
+				$.post(server + "cclientes", {
+					"movil": 1,
+					"json": true,
+					"action": "delSitio",
+					"id": $("#idSitio").val()
+				}, function(resp){
+					if (resp.band){
+						if($("#winAddSitio").attr("datos") == '' || $("#winAddSitio").attr("datos") == undefined){
+							getSitios();
+						}
+						alertify.success("Sitio eliminado");
+						$("#winAddSitio").modal("hide");
+					}else
+						alertify.error("No se pudo eliminar");
 				}, "json");
 			}
 		});
@@ -440,10 +467,18 @@ $(document).ready(function(){
 			$("#winAddSitio").find("#longitud").val("");
 			$("#winAddSitio").find("#txtTitulo").val("");
 			$("#winAddSitio").find("#txtDireccion").val("");
+			$("#winAddSitio").find("#idSitio").val("");
+			
+			$("#winAddSitio").find("#eliminar").hide();
+			
+			if($("#winAddSitio").attr("datos") == '' || $("#winAddSitio").attr("datos") == undefined){
+				$("#winAddSitio").find(".modal-title").html("Sitios");
+			}
 		});
 		
 		$("#winAddSitio").on('hide.bs.modal', function () {
-			$("#winDatosEnvio").modal();
+			if (!($("#winAddSitio").attr("datos") == '' || $("#winAddSitio").attr("datos") == undefined))
+				$("#winDatosEnvio").modal();
 		});
 	});
 });

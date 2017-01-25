@@ -30,7 +30,9 @@
 				</div>
 			</div>
 			<div class="modal-footer">
+				<button type="button" id="eliminar" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
 				<button type="button" id="agregar" class="btn btn-primary">Agregar</button>
+				<input type="hidden" id="idSitio" name="idSitio" />
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
