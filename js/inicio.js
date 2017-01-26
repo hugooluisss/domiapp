@@ -198,6 +198,7 @@ var app = {
 			});
 			
 			$("#winDatosEnvio").on('show.bs.modal', function () {
+				var win = $("#winDatosEnvio");
 				var producto = jQuery.parseJSON(win.attr("datos"));
 				win.find(".modal-title").find(".titulo").html(producto.nombre);
 				win.find(".img-rounded").attr("src", server + "repositorio/servicios/img" + producto.idServicio + ".jpg");
