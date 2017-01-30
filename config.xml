@@ -57,7 +57,6 @@
 		<!-- A list of available plugins are available at https://build.phonegap.com/plugins -->  
 
 		<!--<plugin name="com.phonegap.plugins.barcodescanner" spec="2.0.0" source="pgb" />-->
-		<plugin name="cordova-plugin-barcodescanner" source="npm"/>
 		<plugin name="cordova-plugin-camera" source="npm"/>
 		<plugin name="cordova-plugin-file" source="npm"/>
 		<plugin name="cordova-plugin-file-transfer" source="npm"/>

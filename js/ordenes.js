@@ -43,17 +43,10 @@ function getOrdenes(){
 		
 		function auxilioSMS(){
 			
-			var success = function () { alert('Message sent successfully'); };
-			var error = function (e) { alert('Message Failed:' + e); };
+			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
+			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
 
-
-			sms.send("9515705278", "Hola, necesito un servicio", {
-				replaceLineBreaks: false, // true to replace \n by a new line, false by default
-				android: {
-					intent: 'INTENT'  // send SMS with the native android SMS messaging
-					//intent: '' // send SMS without open any other app
-				}
-			}, success, error);
+			SMS.sendSMS("9515705278", "Hola, necesito un servicio", success, error);
 		}
 	});
 }
