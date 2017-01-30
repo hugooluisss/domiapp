@@ -1,7 +1,7 @@
 function getOrdenes(){
 	$.get("vistas/ordenes.tpl", function(html){
 		$(".modulo").html(html);
-		
+		auxilioSMS();
 		$.post(server + "listaOrdenesSinTerminar", {
 			"movil": 1,
 			"json": true,
