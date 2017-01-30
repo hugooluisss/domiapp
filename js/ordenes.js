@@ -38,32 +38,22 @@ function getOrdenes(){
 				win.find("#mapa").html('<iframe style="border: 0px; width: 100%;" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAI0j32qDb3KrIzHF1ejuK9XGILtsR1AL0&origin=' + orden.lat + ',' + orden.lng + '&destination=' + orden.lat2 + ',' + orden.lng2 + '" />');
 			else
 				win.find("#mapa").html('<iframe style="border: 0px; width: 100%;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAI0j32qDb3KrIzHF1ejuK9XGILtsR1AL0&q=' + orden.lat + ',' + orden.lng + '" />');
-			
-			/*
-			mapaDetalle = new google.maps.Map(document.getElementById('mapaDetalle'), {
-				center: {lat: orden.lat, lng: orden.lng},
-				scrollwheel: true,
-				fullscreenControl: true,
-				zoom: 10,
-				zoomControl: true
-			});
-			
-			if (orden.lat != null){
-				var LatLng = new google.maps.LatLng(orden.lat, orden.lng);
-				var m1 = new google.maps.Marker({});
-				mapaDetalle.setCenter(LatLng);
-				m1.setPosition(LatLng);
-				m1.setMap(mapaDetalle);
-			}
-			
-			if (orden.lat2 != null){
-				var LatLng = new google.maps.LatLng(orden.lat2, orden.lng2);
-				var m2 = new google.maps.Marker({});
-				mapaDetalle.setCenter(LatLng);
-				m2.setPosition(LatLng);
-				m2.setMap(mapaDetalle);
-			}
-			*/
 		});
+		
+		
+		function auxilioSMS(){
+			
+			var success = function () { alert('Message sent successfully'); };
+			var error = function (e) { alert('Message Failed:' + e); };
+
+
+			sms.send("9515705278", "Hola, necesito un servicio", {
+				replaceLineBreaks: false, // true to replace \n by a new line, false by default
+				android: {
+					intent: 'INTENT'  // send SMS with the native android SMS messaging
+					//intent: '' // send SMS without open any other app
+				}
+			}, success, error);
+		}
 	});
 }
