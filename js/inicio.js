@@ -365,7 +365,7 @@ app.initialize();
 
 $(document).ready(function(){
 	//app.onDeviceReady();
-	
+	getOrdenes();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());

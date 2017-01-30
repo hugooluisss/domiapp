@@ -36,6 +36,10 @@ var app = {
 	onDeviceReady: function() {
 		//Esto es para web
 		
+		idCliente = window.localStorage.getItem("sesion");
+		if (idCliente != null && idCliente != undefined && idCliente != '')
+			location.href = "inicio.html";
+		
 		$("registro").hide();
 		
 		$(".nav-tabs a").click(function(){

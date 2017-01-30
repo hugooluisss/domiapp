@@ -1,4 +1,10 @@
 <br /><br />
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<button class="btn btn-danger" id="btnLlamenme">Láamenme ahora</button>
+	</div>
+</div>
+<br />
 <ul class="list-group" id="tplOrdenes"></ul>
 
 <div id="winDetalleOrden" class="modal fade" tabindex="-1" role="dialog" datos="">
