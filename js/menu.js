@@ -84,6 +84,12 @@ function setMenu(){
 		getSitios();
 	});
 	
+	$(".collapse").find("[action=historial]").click(function(){
+		$("#navbarSupportedContent").collapse('hide');
+		
+		getOrdenes();
+	});
+	
 	$("#btnCamara").click(function(){
 		if (navigator.camera != undefined){
 			navigator.camera.getPicture(function(imageData) {

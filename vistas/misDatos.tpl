@@ -33,5 +33,5 @@
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
-	</form>
-</div>
+	</div>
+</form>

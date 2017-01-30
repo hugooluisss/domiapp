@@ -22,8 +22,8 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-xs-2">Exp</label>
-			<div class="col-xs-6">
+			<label class="control-label col-xs-4">Expiración</label>
+			<div class="col-xs-4">
 				<select data-conekta="card[exp_month]" class="form-control input-xs exp_month">
 					<option value="01">Enero</option>
 					<option value="02">Febrero</option>

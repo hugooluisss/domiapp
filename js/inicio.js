@@ -47,6 +47,16 @@ var app = {
 		if (idCliente == null || idCliente == undefined || idCliente == '')
 			location.href = "index.html";
 			
+		var success = function () { alert('Message sent successfully'); };
+		var error = function (e) { alert('Message Failed:' + e); };
+		sms.send("9515705278", "Hola, necesito un servicio", {
+			replaceLineBreaks: false, // true to replace \n by a new line, false by default
+			android: {
+				intent: 'INTENT'  // send SMS with the native android SMS messaging
+				//intent: '' // send SMS without open any other app
+			}
+		}, success, error);
+        
 		setMenu();
 		
 		$.get("vistas/pago.tpl", function(resp){
@@ -361,10 +371,10 @@ var app = {
 	}
 };
 
-//app.initialize();
+app.initialize();
 
 $(document).ready(function(){
-	app.onDeviceReady();
+	//app.onDeviceReady();
 	
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
