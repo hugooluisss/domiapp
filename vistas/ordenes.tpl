@@ -1,7 +1,7 @@
 <br /><br />
 <div class="row">
 	<div class="col-xs-12 text-center">
-		<button class="btn btn-danger" id="btnLlamenme">Láamenme ahora</button>
+		<button class="btn btn-danger" id="btnLlamenme"><i class="fa fa-phone" aria-hidden="true"></i> Llámenme ahora</button>
 	</div>
 </div>
 <br />

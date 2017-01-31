@@ -35,8 +35,6 @@ function getSitios(){
 						
 						google.maps.event.addListener(mapSitio, 'click', function(event){
 							var LatLng = event.latLng;
-							//var LatLng = mapSitio.getCenter();
-							//mapSitio.setCenter(LatLng);
 							marcaSitios.setPosition(LatLng);
 							marcaSitios.setMap(mapSitio);
 							console.info(event.latLng.lat(), event.latLng.lng());

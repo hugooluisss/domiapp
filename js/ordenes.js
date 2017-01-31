@@ -50,7 +50,8 @@ function getOrdenes(){
 			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
 			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
 
-			SMS.sendSMS("9515705278", "Hola, necesito un servicio", success, error);
+			//SMS.sendSMS("9515705278", "Solicitaron ayuda desde este número, márcale ahora... DomiApp", success, error);
+			SMS.sendSMS("4498953316", "Solicitaron ayuda desde este número, márcale ahora... DomiApp", success, error);
 		}
 	});
 }

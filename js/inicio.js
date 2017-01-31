@@ -46,7 +46,9 @@ var app = {
 		idCliente = window.localStorage.getItem("sesion");
 		if (idCliente == null || idCliente == undefined || idCliente == '')
 			location.href = "index.html";
-			        
+		
+		getOrdenes();
+		
 		setMenu();
 		
 		$.get("vistas/pago.tpl", function(resp){
@@ -335,14 +337,16 @@ var app = {
 						zoomControl: true
 					});
 					
-					google.maps.event.addListener(mapSitio, 'drag', function(){
-						$("#winAddSitio").find("#latitud").val(mapSitio.getCenter().lat());
-						$("#winAddSitio").find("#longitud").val(mapSitio.getCenter().lng());
-						var LatLng = mapSitio.getCenter();
-						mapSitio.setCenter(LatLng);
-						marcaSitios.setPosition(LatLng);
-						marcaSitios.setMap(mapSitio);
-					});
+					google.maps.event.addListener(mapSitio, 'click', function(event){
+							var LatLng = event.latLng;
+							
+							marcaSitios.setPosition(LatLng);
+							marcaSitios.setMap(mapSitio);
+							console.info(event.latLng.lat(), event.latLng.lng());
+							
+							$("#winAddSitio").find("#latitud").val(event.latLng.lat());
+							$("#winAddSitio").find("#longitud").val(event.latLng.lng());
+						});
 					
 					var LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 					mapSitio.setCenter(LatLng);
@@ -365,7 +369,6 @@ app.initialize();
 
 $(document).ready(function(){
 	//app.onDeviceReady();
-	getOrdenes();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
