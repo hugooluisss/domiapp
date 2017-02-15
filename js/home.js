@@ -115,6 +115,9 @@ var app = {
 				},
 				txtNacimiento: {
 					required : true
+				},
+				chkTerminos: {
+					required: true
 				}
 			},
 			wrapper: 'span', 
@@ -190,4 +193,13 @@ $(document).ready(function(){
 	
 	$("body").css("height", $(window).height());
 	$("registro").css("height", $(window).height());
+	
+	$("#lnkTerminos").click(function(){
+		$.get("http://admin.grupodomiapp.com/politica-uso", function(resp){
+			$("#winTerminos").find(".modal-body").html(resp);
+			
+			$("#winTerminos").find(".modal-body").find("img").remove();
+		});
+		$("#winTerminos").modal();
+	});
 });

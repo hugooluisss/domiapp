@@ -90,6 +90,20 @@ function setMenu(){
 		getOrdenes();
 	});
 	
+	$(".collapse").find("[action=politica]").click(function(){
+		$("#navbarSupportedContent").collapse('hide');
+		
+		$.get("http://admin.grupodomiapp.com/politica-uso", function(resp){
+			$("#winTerminos").find(".modal-body").html(resp);
+			
+			$("#winTerminos").find(".modal-body").find("img").remove();
+			
+			$("#winTerminos").modal();
+		});
+	});
+
+	
+	
 	$("#btnCamara").click(function(){
 		if (navigator.camera != undefined){
 			navigator.camera.getPicture(function(imageData) {

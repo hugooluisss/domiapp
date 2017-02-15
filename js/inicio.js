@@ -60,18 +60,34 @@ var app = {
 			for(var i = 0 ; i  < 10 ; i++, ++ano)
 				$("#winPago").find(".exp_year").append('<option value="' + ano + '">' + ano + '</option>');
 				
+			var tarjeta = window.localStorage.getItem("tarjeta");
+			console.log(tarjeta.number);
+			if (tarjeta != null && tarjeta != undefined){
+				$(".calle").val(tarjeta.calle);
+				$(".colonia").val(tarjeta.colonia);
+				$(".ciudad").val(tarjeta.ciudad);
+				$(".estado").val(tarjeta.estado);
+				$(".codigoPostal").val(tarjeta.codigoPostal);
+				$(".name").val(tarjeta.nombre);
+				$(".number").val(tarjeta.number);
+				$(".exp_month").val(tarjeta.month);
+				$(".exp_year").val(tarjeta.year);
+			}
+				
 			$("#submitPago").click(function(){
 				jsShowWindowLoad("Espere mientras procesamos el pago");
 				Conekta.setPublicKey(conektaPublic);
 				//Conekta.setPublishableKey(conektaPublic);
 				var $form = $("#frmEnvio");
 				
+				
 				$(".name").val("hugo Santiago");
 				$(".number").val("4242424242424242");
 				$(".cvc").val("121");
 				$(".exp_month").val("11");
 				$(".exp_year").val("2018");
-	
+				
+				
 				// Previene hacer submit más de una vez
 				$form.find("#submitPago").prop("disabled", true);
 				Conekta.Token.create($form, function(token) {
@@ -101,6 +117,21 @@ var app = {
 							var producto = jQuery.parseJSON($("#winDatosEnvio").attr("datos"));
 							var origen = $("#selOrigen").find("option:selected");
 							var destino = $("#selDestino").find("option:selected");
+							
+							datosTarjeta = {};
+							
+							datosTarjeta.calle = $(".calle").val();
+							datosTarjeta.colonia = $(".colonia").val();
+							datosTarjeta.ciudad = $(".ciudad").val();
+							datosTarjeta.estado = $(".estado").val();
+							datosTarjeta.codigoPostal = $(".codigoPostal").val();
+							datosTarjeta.nombre = $(".name").val();
+							datosTarjeta.number = $(".number").val();
+							datosTarjeta.month = $(".exp_month").val();
+							datosTarjeta.year = $(".exp_year").val();
+							
+							window.localStorage.removeItem("tarjeta");
+							window.localStorage.setItem("tarjeta", datosTarjeta);
 							
 							$.post(server + "cordenes", {
 								"cliente": idCliente,
@@ -280,7 +311,7 @@ var app = {
 				"latitud2": origen.attr("latitude"),
 				"longitud2": origen.attr("longitude")
 			}, function(resp){
-				if (resp.distancia > 0){
+				if (resp.distancia > 0 && resp.distancia <= 18){
 					$("#winPago").find("#monto").html((parseFloat(resp.monto) + parseFloat(producto.precio)).toFixed(2));
 					if (producto.precio > 0)
 						alertify.success("El recorrido de " + resp.distancia + "km <br />Costo de envío $ " + resp.monto + "<br /> Producto a enviar: " + producto.precio);
@@ -289,7 +320,7 @@ var app = {
 						
 					$("#winPago").modal();
 				}else
-					alertify.error("La distancia debe ser mayor a un kilómetro");
+					alertify.error("La distancia debe ser mayor a un kilómetro y menor a 18");
 					
 				jsRemoveWindowLoad();
 			}, "json");
@@ -365,10 +396,10 @@ var app = {
 	}
 };
 
-app.initialize();
+//app.initialize();
 
 $(document).ready(function(){
-	//app.onDeviceReady();
+	app.onDeviceReady();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
