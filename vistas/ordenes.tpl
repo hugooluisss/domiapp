@@ -39,6 +39,12 @@
 					<div class="col-xs-7" campo="nombreAtiende"/>
 				</div>
 				
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<button class="btn btn-danger" id="btnComunicarse"><i class="fa fa-phone" aria-hidden="true"></i> Llámenme ahora</button>
+					</div>
+				</div>
+				
 				<br />
 				<br />
 				<div class="row">

@@ -42,16 +42,22 @@ function getOrdenes(){
 				win.find("#mapa").html('<iframe style="border: 0px; width: 100%;" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAI0j32qDb3KrIzHF1ejuK9XGILtsR1AL0&origin=' + orden.lat + ',' + orden.lng + '&destination=' + orden.lat2 + ',' + orden.lng2 + '" />');
 			else
 				win.find("#mapa").html('<iframe style="border: 0px; width: 100%;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAI0j32qDb3KrIzHF1ejuK9XGILtsR1AL0&q=' + orden.lat + ',' + orden.lng + '" />');
+				
+			$("#btnComunicarse").attr("orden", orde.idOrden);
 		});
 		
-		
-		function auxilioSMS(){
-			
+		$("#btnComunicarse").click(function(){
 			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
 			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
 
-			//SMS.sendSMS("9515705278", "Solicitaron ayuda desde este número, márcale ahora... DomiApp", success, error);
-			SMS.sendSMS("4498953316", "Solicitaron ayuda desde este número, márcale ahora... DomiApp", success, error);
+			SMS.sendSMS(telefono, "Es necesario llamar a este número, el cliente tiene dudas con respecto a la orden con ID " + $("#btnComunicarse").attr("orden") + "... DomiApp", success, error);
+		});
+		
+		function auxilioSMS(){
+			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
+			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
+
+			SMS.sendSMS(telefono, "Solicitaron ayuda desde este número, márcale ahora... DomiApp", success, error);
 		}
 	});
 }

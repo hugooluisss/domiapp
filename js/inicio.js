@@ -22,6 +22,7 @@ var map = null;
 var markerDestino = null;
 var markerOrigen = null;
 var conektaPublic = "key_MRZCVTdwkzcUVSzzThFcCsg";
+var telefono = "4498953316";
 
 var mapSitio = null;
 
@@ -61,8 +62,10 @@ var app = {
 				$("#winPago").find(".exp_year").append('<option value="' + ano + '">' + ano + '</option>');
 				
 			var tarjeta = window.localStorage.getItem("tarjeta");
-			console.log(tarjeta.number);
+			console.log(tarjeta);
 			if (tarjeta != null && tarjeta != undefined){
+				tarjeta = JSON.parse(tarjeta);
+				
 				$(".calle").val(tarjeta.calle);
 				$(".colonia").val(tarjeta.colonia);
 				$(".ciudad").val(tarjeta.ciudad);
@@ -80,13 +83,13 @@ var app = {
 				//Conekta.setPublishableKey(conektaPublic);
 				var $form = $("#frmEnvio");
 				
-				
+				/*
 				$(".name").val("hugo Santiago");
 				$(".number").val("4242424242424242");
 				$(".cvc").val("121");
 				$(".exp_month").val("11");
 				$(".exp_year").val("2018");
-				
+				*/
 				
 				// Previene hacer submit más de una vez
 				$form.find("#submitPago").prop("disabled", true);
@@ -118,7 +121,7 @@ var app = {
 							var origen = $("#selOrigen").find("option:selected");
 							var destino = $("#selDestino").find("option:selected");
 							
-							datosTarjeta = {};
+							var datosTarjeta = new Object;
 							
 							datosTarjeta.calle = $(".calle").val();
 							datosTarjeta.colonia = $(".colonia").val();
@@ -131,7 +134,7 @@ var app = {
 							datosTarjeta.year = $(".exp_year").val();
 							
 							window.localStorage.removeItem("tarjeta");
-							window.localStorage.setItem("tarjeta", datosTarjeta);
+							window.localStorage.setItem("tarjeta", JSON.stringify(datosTarjeta));
 							
 							$.post(server + "cordenes", {
 								"cliente": idCliente,
@@ -146,7 +149,7 @@ var app = {
 							}, function(resp){
 								if (resp.band){
 									alertify.success("Estamos trabajando en su orden, estamos en camino");
-									location.reload();
+									setTimeout(location.reload(), 3000);
 									$(".modulo").html("");
 								}else
 									alertify.error("Ocurrió un error");
@@ -396,10 +399,10 @@ var app = {
 	}
 };
 
-//app.initialize();
+app.initialize();
 
 $(document).ready(function(){
-	app.onDeviceReady();
+	//app.onDeviceReady();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
