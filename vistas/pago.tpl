@@ -43,35 +43,6 @@
 				<select class="form-control input-xs exp_year" data-conekta="card[exp_year]"></select>
 			</div>
 		</div>
-		<hr />
-		<!--Dirección -->
-		<div class="form-group">
-			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs calle" data-conekta="card[address][street1]" placeholder="Calle"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs colonia" data-conekta="card[address][street2]" placeholder="Colonia"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs ciudad" data-conekta="card[address][city]" placeholder="Ciudad"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs estado" data-conekta="card[address][state]" placeholder="Estado"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-xs-12">
-				<input type="text" class="form-control input-xs codigoPostal" data-conekta="card[address][zip]" placeholder="Código Postal"/>
-			</div>
-		</div>
-		
-		<input type="hidden" class="pais" data-conekta="card[address][country]" value="México"/>
 		<div class="form-group">
 			<div class="row">
 				<div class="col-xs-6 col-xs-offset-3 text-center">
