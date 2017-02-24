@@ -144,7 +144,7 @@ var app = {
 							}, function(resp){
 								if (resp.band){
 									alertify.success("Estamos trabajando en su orden, estamos en camino");
-									setTimeout(location.reload(), 3000);
+									setTimeout(function(){location.reload();}, 3000);
 									$(".modulo").html("");
 								}else
 									alertify.error("Ocurrió un error");
