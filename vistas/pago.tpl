@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.5.0/js/conekta.js"></script>
+<script type="text/javascript" data-conekta-public-key="key_FLvB3CMbt6MfrgTs5y7nvxw" src="librerias/conekta/conekta.js"></script>
 
 <div class="container">
 	<form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago" class="form-horizontal" action="">

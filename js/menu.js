@@ -70,6 +70,7 @@ function setMenu(){
 	
 	$(".collapse").find("[action=salir]").click(function(){
 		window.localStorage.removeItem("sesion");
+		window.localStorage.removeItem("tarjeta");
 		location.href = "index.html";
 	});
 	

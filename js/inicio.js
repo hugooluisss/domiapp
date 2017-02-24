@@ -21,7 +21,7 @@ var idCliente;
 var map = null;
 var markerDestino = null;
 var markerOrigen = null;
-var conektaPublic = "key_MRZCVTdwkzcUVSzzThFcCsg";
+var conektaPublic = "key_FLvB3CMbt6MfrgTs5y7nvxw";
 var telefono = "4498953316";
 
 var mapSitio = null;
@@ -43,6 +43,9 @@ var app = {
 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
+		document.addEventListener("backbutton", function(){
+			return false;
+		}, true);
 		//window.localStorage.removeItem("sesion");
 		idCliente = window.localStorage.getItem("sesion");
 		if (idCliente == null || idCliente == undefined || idCliente == '')
@@ -66,11 +69,6 @@ var app = {
 			if (tarjeta != null && tarjeta != undefined){
 				tarjeta = JSON.parse(tarjeta);
 				
-				$(".calle").val(tarjeta.calle);
-				$(".colonia").val(tarjeta.colonia);
-				$(".ciudad").val(tarjeta.ciudad);
-				$(".estado").val(tarjeta.estado);
-				$(".codigoPostal").val(tarjeta.codigoPostal);
 				$(".name").val(tarjeta.nombre);
 				$(".number").val(tarjeta.number);
 				$(".exp_month").val(tarjeta.month);
@@ -104,13 +102,13 @@ var app = {
 					$.post(server + 'cpagos', {
 						"token": token.id,
 						"cliente": idCliente,
-						"calle": $(".calle").val(),
-						"colonia": $(".colonia").val(),
-						"ciudad": $(".ciudad").val(),
-						"estado": $(".estado").val(),
-						"codigoPostal": $(".codigoPostal").val(),
+						//"calle": $(".calle").val(),
+						//"colonia": $(".colonia").val(),
+						//"ciudad": $(".ciudad").val(),
+						//"estado": $(".estado").val(),
+						//"codigoPostal": $(".codigoPostal").val(),
 						"movil": 1,
-						"amount": $("#monto").html(),
+						"monto": $("#monto").html(),
 						"action": "cobroTarjeta"
 					}, function(resp) {
 						$form.find("button").prop("disabled", false);
@@ -121,17 +119,13 @@ var app = {
 							var origen = $("#selOrigen").find("option:selected");
 							var destino = $("#selDestino").find("option:selected");
 							
-							var datosTarjeta = new Object;
+							datosTarjeta = {};
 							
-							datosTarjeta.calle = $(".calle").val();
-							datosTarjeta.colonia = $(".colonia").val();
-							datosTarjeta.ciudad = $(".ciudad").val();
-							datosTarjeta.estado = $(".estado").val();
-							datosTarjeta.codigoPostal = $(".codigoPostal").val();
 							datosTarjeta.nombre = $(".name").val();
 							datosTarjeta.number = $(".number").val();
 							datosTarjeta.month = $(".exp_month").val();
 							datosTarjeta.year = $(".exp_year").val();
+
 							
 							window.localStorage.removeItem("tarjeta");
 							window.localStorage.setItem("tarjeta", JSON.stringify(datosTarjeta));
@@ -144,6 +138,7 @@ var app = {
 								"latitud2": producto.precio > 0?'':origen.attr("latitude"),
 								"longitud2": producto.precio > 0?'':origen.attr("longitude"),
 								"notas": $("#txtNotas").val(),
+								"conekta_id": resp.idPago,
 								"action": "add",
 								"movil": 1
 							}, function(resp){
@@ -399,10 +394,10 @@ var app = {
 	}
 };
 
-//app.initialize();
+app.initialize();
 
 $(document).ready(function(){
-	app.onDeviceReady();
+	//app.onDeviceReady();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
@@ -441,6 +436,10 @@ $(document).ready(function(){
 						if($("#winAddSitio").attr("datos") == '' || $("#winAddSitio").attr("datos") == undefined){
 							getSitios();
 						}
+						
+						$("#selOrigen").append('<option value="' + resp.id + '" latitude="' + $("#latitud").val() + '" longitude="' + $("#longitud").val() + '">' + $("#txtTitulo").val() + '</option>');
+						$("#selDestino").append('<option value="' + resp.id + '" latitude="' + $("#latitud").val() + '" longitude="' + $("#longitud").val() + '">' + $("#txtTitulo").val() + '</option>');
+						
 						alertify.success("Sitio agregado");
 						$("#winAddSitio").modal("hide");
 					}else
@@ -500,7 +499,7 @@ $(document).ready(function(){
 		});
 		
 		$("#winAddSitio").on('show.bs.modal', function () {
-			$("#winDatosEnvio").modal("hide");
+			//$("#winDatosEnvio").modal("hide");
 			$("#winAddSitio").find("#latitud").val("");
 			$("#winAddSitio").find("#longitud").val("");
 			$("#winAddSitio").find("#txtTitulo").val("");
