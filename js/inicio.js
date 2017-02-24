@@ -21,7 +21,7 @@ var idCliente;
 var map = null;
 var markerDestino = null;
 var markerOrigen = null;
-var conektaPublic = "key_FLvB3CMbt6MfrgTs5y7nvxw";
+var conektaPublic = "key_MRZCVTdwkzcUVSzzThFcCsg";
 var telefono = "4498953316";
 
 var mapSitio = null;
@@ -144,7 +144,11 @@ var app = {
 							}, function(resp){
 								if (resp.band){
 									alertify.success("Estamos trabajando en su orden, estamos en camino");
-									setTimeout(function(){location.reload();}, 3000);
+									jsShowWindowLoad("Todo listo... muchas gracias por su pago");
+									
+									setTimeout(function(){
+										location.reload();
+									}, 2000);
 									$(".modulo").html("");
 								}else
 									alertify.error("Ocurrió un error");
@@ -394,10 +398,10 @@ var app = {
 	}
 };
 
-app.initialize();
+//app.initialize();
 
 $(document).ready(function(){
-	//app.onDeviceReady();
+	app.onDeviceReady();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
