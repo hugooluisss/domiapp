@@ -1,4 +1,4 @@
-<script type="text/javascript" data-conekta-public-key="key_MRZCVTdwkzcUVSzzThFcCsg" src="librerias/conekta/conekta.js"></script>
+<script type="text/javascript" data-conekta-public-key="key_bqFat52tN6nohmtcU7AFYwg" src="librerias/conekta/conekta.js"></script>
 
 <div class="container">
 	<form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago" class="form-horizontal" action="">

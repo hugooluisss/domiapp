@@ -21,7 +21,7 @@ var idCliente;
 var map = null;
 var markerDestino = null;
 var markerOrigen = null;
-var conektaPublic = "key_MRZCVTdwkzcUVSzzThFcCsg";
+var conektaPublic = "key_bqFat52tN6nohmtcU7AFYwg";
 var telefono = "4498953316";
 
 var mapSitio = null;
@@ -81,13 +81,13 @@ var app = {
 				//Conekta.setPublishableKey(conektaPublic);
 				var $form = $("#frmEnvio");
 				
-				
+				/*
 				$(".name").val("hugo Santiago");
 				$(".number").val("4242424242424242");
 				$(".cvc").val("121");
 				$(".exp_month").val("11");
 				$(".exp_year").val("2018");
-				
+				*/
 				
 				// Previene hacer submit más de una vez
 				$form.find("#submitPago").prop("disabled", true);
@@ -398,10 +398,10 @@ var app = {
 	}
 };
 
-//app.initialize();
+app.initialize();
 
 $(document).ready(function(){
-	app.onDeviceReady();
+	//app.onDeviceReady();
 	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
