@@ -139,7 +139,6 @@ function setMenu(){
 		
 		var params = new Object();
 		params.identificador = idCliente;
-		console.log("Cliente " + idCliente);
 		params.movil = 1;
 		options.params = params;
 		
