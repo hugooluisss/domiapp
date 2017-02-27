@@ -108,7 +108,10 @@ function setMenu(){
 	$("#btnCamara").click(function(){
 		if (navigator.camera != undefined){
 			navigator.camera.getPicture(function(imageData) {
-					$("#fotoPerfil").attr("src", imageData);
+					$("#fotoPerfil").attr("src", "data:image/jpeg;base64," + imageData);
+					
+					//img.attr("src", "data:image/jpeg;base64," + imageURI);
+					//img.attr("src2", imageURI);
 					subirFotoPerfil(imageData);
 				}, function(message){
 					alertify.error("Ocurrio un error al subir la imagen");
@@ -117,7 +120,9 @@ function setMenu(){
 			        }, 5000);
 				}, { 
 					quality: 100,
-					destinationType: Camera.DestinationType.FILE_URI,
+					//destinationType: Camera.DestinationType.FILE_URI,
+					destinationType: Camera.DestinationType.DATA_URL,
+					encodingType: Camera.EncodingType.JPEG,
 					targetWidth: 250,
 					targetHeight: 250,
 					correctOrientation: true,
@@ -131,6 +136,21 @@ function setMenu(){
 	
 	
 	function subirFotoPerfil(imageURI){
+		var formData = new FormData();
+		
+		$.post(server + '?mod=cclientes2&action=uploadImagenPerfil',
+			{
+				"imagen": imageURI,
+				"movil": 1,
+				"identificador": idCliente
+			}, function(data){
+				if (data.band)
+					alertify.success("La fotografía se cargó con éxito");
+				else
+					alertify.error("Ocurrió un error al subir la fotografía");
+			}
+		}, "json");
+		/*
 		var options = new FileUploadOptions();
 		
 		options.fileKey = "file";
@@ -154,5 +174,6 @@ function setMenu(){
 			    console.log("upload error source " + error.source);
 			    console.log("upload error target " + error.target);
 			}, options);
+		*/
 	}
 }
