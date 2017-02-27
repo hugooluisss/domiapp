@@ -3,7 +3,7 @@ function getOrdenes(){
 		$(".modulo").html(html);
 		
 		$("#btnLlamenme").click(function(){
-			auxilioSMS("Solicitaron ayuda desde este número, márcale ahora... DomiApp");
+			auxilioSMS("Solicitaron ayuda desde este numero, marcale ahora... DomiApp");
 		});
 		
 		$.post(server + "listaOrdenesSinTerminar", {
@@ -47,10 +47,7 @@ function getOrdenes(){
 		});
 		
 		$("#btnComunicarse").click(function(){
-			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
-			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
-			
-			auxilioSMS("Es necesario llamar a este número, el cliente tiene dudas con respecto a la orden con ID " + $("#btnComunicarse").attr("orden") + "... DomiApp");
+			auxilioSMS("Es necesario llamar a este numero, el cliente tiene dudas con respecto a la orden con ID " + $("#btnComunicarse").attr("orden") + "... DomiApp");
 		});
 		
 		function auxilioSMS(mensaje){
