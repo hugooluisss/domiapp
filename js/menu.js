@@ -136,7 +136,7 @@ function setMenu(){
 		options.fileKey = "file";
 		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
 		options.mimeType = "image/jpeg";
-		
+		console.info(imageURI);
 		var params = new Object();
 		params.identificador = idCliente;
 		params.movil = 1;
