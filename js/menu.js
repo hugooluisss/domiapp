@@ -143,7 +143,7 @@ function setMenu(){
 		options.params = params;
 		
 		var ft = new FileTransfer();
-		ft.upload(imageURI, encodeURI(server + "?mod=cclientes&action=uploadImagenPerfil"), function(r){
+		ft.upload(imageURI, encodeURI(server + "?mod=cclientes2&action=uploadImagenPerfil"), function(r){
 				console.log("Code = " + r.responseCode);
 		        console.log("Response = " + r.response);
 		        console.log("Sent = " + r.bytesSent);
