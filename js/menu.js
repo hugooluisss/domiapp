@@ -148,30 +148,5 @@ function setMenu(){
 				else
 					alertify.error("Ocurrió un error al subir la fotografía");
 			}, "json");
-		/*
-		var options = new FileUploadOptions();
-		
-		options.fileKey = "file";
-		options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-		options.mimeType = "image/jpeg";
-		console.info(imageURI);
-		var params = new Object();
-		params.identificador = idCliente;
-		params.movil = 1;
-		options.params = params;
-		
-		var ft = new FileTransfer();
-		ft.upload(imageURI, encodeURI(server + "?mod=cclientes2&action=uploadImagenPerfil"), function(r){
-				console.log("Code = " + r.responseCode);
-		        console.log("Response = " + r.response);
-		        console.log("Sent = " + r.bytesSent);
-		        
-		        alertify.success("La fotografía se cargó con éxito");
-			}, function(error){
-				alertify.error("No se pudo subir la imagen al servidor" + error.target);
-			    console.log("upload error source " + error.source);
-			    console.log("upload error target " + error.target);
-			}, options);
-		*/
 	}
 }
