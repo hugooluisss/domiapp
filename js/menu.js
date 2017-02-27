@@ -138,8 +138,7 @@ function setMenu(){
 	function subirFotoPerfil(imageURI){
 		var formData = new FormData();
 		
-		$.post(server + '?mod=cclientes2&action=uploadImagenPerfil',
-			{
+		$.post(server + '?mod=cclientes2&action=uploadImagenPerfil', {
 				"imagen": imageURI,
 				"movil": 1,
 				"identificador": idCliente
@@ -148,8 +147,7 @@ function setMenu(){
 					alertify.success("La fotografía se cargó con éxito");
 				else
 					alertify.error("Ocurrió un error al subir la fotografía");
-			}
-		}, "json");
+			}, "json");
 		/*
 		var options = new FileUploadOptions();
 		
