@@ -3,7 +3,7 @@ function getOrdenes(){
 		$(".modulo").html(html);
 		
 		$("#btnLlamenme").click(function(){
-			auxilioSMS();
+			auxilioSMS("Solicitaron ayuda desde este número, márcale ahora... DomiApp");
 		});
 		
 		$.post(server + "listaOrdenesSinTerminar", {
@@ -43,21 +43,21 @@ function getOrdenes(){
 			else
 				win.find("#mapa").html('<iframe style="border: 0px; width: 100%;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAI0j32qDb3KrIzHF1ejuK9XGILtsR1AL0&q=' + orden.lat + ',' + orden.lng + '" />');
 				
-			$("#btnComunicarse").attr("orden", orde.idOrden);
+			$("#btnComunicarse").attr("orden", orden.idOrden);
 		});
 		
 		$("#btnComunicarse").click(function(){
 			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
 			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
-
-			SMS.sendSMS(telefono, "Es necesario llamar a este número, el cliente tiene dudas con respecto a la orden con ID " + $("#btnComunicarse").attr("orden") + "... DomiApp", success, error);
+			
+			auxilioSMS("Es necesario llamar a este número, el cliente tiene dudas con respecto a la orden con ID " + $("#btnComunicarse").attr("orden") + "... DomiApp");
 		});
 		
-		function auxilioSMS(){
+		function auxilioSMS(mensaje){
 			var success = function () { alertify.success('Listo... en un momento te devolveremos la llamada'); };
 			var error = function (e) { alertify.error('No pudo enviarse el SMS'); };
 
-			SMS.sendSMS(telefono, "Solicitaron ayuda desde este número, márcale ahora... DomiApp", success, error);
+			SMS.sendSMS(telefono, mensaje, success, error);
 		}
 	});
 }
