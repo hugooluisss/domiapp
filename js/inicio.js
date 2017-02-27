@@ -66,8 +66,8 @@ var app = {
 				$("#winPago").find(".exp_year").append('<option value="' + ano + '">' + ano + '</option>');
 				
 			var tarjeta = window.localStorage.getItem("tarjeta");
-			console.log(tarjeta);
-			if (tarjeta != null && tarjeta != undefined){
+			
+			if (tarjeta != null && tarjeta != undefined && tarjeta != ''){
 				tarjeta = JSON.parse(tarjeta);
 				
 				$(".name").val(tarjeta.nombre);

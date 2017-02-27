@@ -187,9 +187,9 @@ var app = {
 app.initialize();
 
 $(document).ready(function(){
-	//app.onDeviceReady();
+	app.onDeviceReady();
 	
-	//reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
+	reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
 	$("body").css("height", $(window).height());
 	$("registro").css("height", $(window).height());
