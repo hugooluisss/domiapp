@@ -112,10 +112,10 @@ var app = {
 					required : true,
 					minlength: 5,
 					equalTo: "#frmRegistro #txtPass"
-				},
+				},/*
 				txtNacimiento: {
 					required : true
-				},
+				},*/
 				chkTerminos: {
 					required: true
 				}
@@ -187,7 +187,7 @@ var app = {
 app.initialize();
 
 $(document).ready(function(){
-	app.onDeviceReady();
+	//app.onDeviceReady();
 	
 	reposition($("#centrarLogo"), $("#centrarLogo").find(".logo"));
 	
